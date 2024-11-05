@@ -60,4 +60,8 @@ describe('./musicians endpoint', () => {
         expect(response.body.instrument).toEqual(data.instrument)
     })
     
+    test("DELETE endpoint", async () => {
+        const response = await request(app).delete(`/musicians/1`)
+        expect(response.statusCode).toBe(204)
+    })
 })
