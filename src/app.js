@@ -28,4 +28,13 @@ app.post("/musicians", async (req, res) => {
     res.status(201).json(musician);
 })
 
+app.put("/musicians/:id", async (req, res) => {
+    const musician = await Musician.findByPk(req.params.id)
+    if (!musician) {
+        return res.status(404).json({ message: "Musician not found" })
+    }
+    await musician.update(req.body)
+    res.json(musician);
+})
+
 module.exports = app;

@@ -45,5 +45,19 @@ describe('./musicians endpoint', () => {
         expect(response.body.name).toEqual(newMusician.name)
         expect(response.body.instrument).toEqual(newMusician.instrument)
     })
+
+    test("PUT endpoint", async () => {
+        const updatedMusician = await Musician.findByPk(1)
+        const data = {
+            name: "Test Updated",
+            instrument: "Test Updated"
+        }
+
+        const response = await request(app).put(`/musicians/${updatedMusician.id}`).send(data)
+
+        expect(response.statusCode).toBe(200)
+        expect(response.body.name).toEqual(data.name)
+        expect(response.body.instrument).toEqual(data.instrument)
+    })
     
 })
