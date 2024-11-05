@@ -23,7 +23,15 @@ describe('./musicians endpoint', () => {
     })
     
 
+    test("Musician endpoint with id param", async () => {
+        const response = await request(app).get('/musicians/1'); // Replace with the actual ID you're testing
 
+        expect(response.statusCode).toBe(200);
+        expect(response.body).toHaveProperty("id")
+        expect(response.body.id).toBe(1)
+        expect(response.body).toHaveProperty("name")
+        expect(response.body.name).toBe("Mick Jagger")
+    })
 
 
     
