@@ -5,6 +5,9 @@ const { db } = require("../db/connection")
 
 const port = 3000;
 
+app.use(express.json());
+app.use(express.urlencoded());
+
 //TODO: Create a GET /musicians route to return all musicians 
 
 app.get("/musicians", async (req, res) => {
@@ -20,6 +23,9 @@ app.get("/musicians/:id", async (req, res) => {
     res.json(musician);
 })
 
-
+app.post("/musicians", async (req, res) => {
+    const musician = await Musician.create(req.body)
+    res.status(201).json(musician);
+})
 
 module.exports = app;
